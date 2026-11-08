@@ -19,7 +19,7 @@ export default function LandingPage() {
     if (!email.trim()) return;
 
     trackUmamiEvent("Newsletter Signup", {
-      location: "landing_dispatch",
+      location: "landing_footer",
       domain: email.split("@")[1] || "unknown",
     });
 
@@ -30,20 +30,20 @@ export default function LandingPage() {
   return (
     <div className="flex flex-col flex-1">
       {/* Hero Section */}
-      <section className="border-b border-neutral-250 dark:border-neutral-800">
-        <div className="max-w-6xl mx-auto px-6 py-24 sm:py-32">
+      <section className="py-24 sm:py-36">
+        <div className="max-w-6xl mx-auto px-6">
           <div className="max-w-3xl space-y-8">
-            <div className="inline-block text-[11px] tracking-[0.12em] uppercase text-neutral-600 dark:text-neutral-400">
-              Series 04 &mdash; Autumn / Winter 2026
-            </div>
+            <span className="text-sm font-normal tracking-wide text-neutral-500 uppercase">
+              Autumn / Winter 2026 Collection
+            </span>
 
-            <h1 className="text-4xl sm:text-5xl md:text-6xl font-normal tracking-[-0.03em] leading-[1.08] text-neutral-950 dark:text-neutral-50">
-              Essential objects designed for longevity and daily utility.
+            <h1 className="text-5xl sm:text-6xl md:text-7xl font-normal tracking-tight text-neutral-950 dark:text-neutral-50 leading-[1.06]">
+              Essential objects designed for quiet utility and everyday life.
             </h1>
 
-            <p className="text-base sm:text-lg font-normal tracking-[-0.015em] text-neutral-700 dark:text-neutral-300 leading-relaxed max-w-2xl">
-              A reductive inquiry into form, tactile materiality, and functional clarity.
-              Each article is produced in limited batches with strict geometric discipline.
+            <p className="text-xl font-normal tracking-tight text-neutral-700 dark:text-neutral-300 leading-relaxed max-w-2xl">
+              Thoughtfully engineered apparel, precision stationery, and timeless stoneware.
+              Crafted in limited numbers with honest materials.
             </p>
 
             <div className="pt-4 flex flex-wrap items-center gap-4">
@@ -51,9 +51,8 @@ export default function LandingPage() {
                 <Button
                   size="lg"
                   data-umami-event="Landing: Explore Catalogue"
-                  className="px-6 text-xs uppercase tracking-[0.06em]"
                 >
-                  View Catalogue &rarr;
+                  Explore Catalogue
                 </Button>
               </Link>
 
@@ -62,9 +61,8 @@ export default function LandingPage() {
                   variant="outline"
                   size="lg"
                   data-umami-event="Landing: View Cart"
-                  className="px-6 text-xs uppercase tracking-[0.06em]"
                 >
-                  Current Bag
+                  View Cart
                 </Button>
               </Link>
             </div>
@@ -72,48 +70,52 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* Featured Selection */}
-      <section className="border-b border-neutral-250 dark:border-neutral-800">
-        <div className="max-w-6xl mx-auto px-6 py-20">
-          <div className="flex items-baseline justify-between mb-12">
+      {/* Featured Products */}
+      <section className="py-20 bg-neutral-50 dark:bg-neutral-950">
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="flex items-end justify-between mb-16">
             <div>
-              <span className="text-[11px] tracking-[0.12em] uppercase text-neutral-600 dark:text-neutral-400 block mb-1">
-                Curated
+              <span className="text-sm font-normal tracking-wide text-neutral-500 uppercase block mb-2">
+                Curated Selection
               </span>
-              <h2 className="text-xl font-normal tracking-[-0.02em] text-neutral-950 dark:text-neutral-50">
-                Selected Releases
+              <h2 className="text-3xl font-normal tracking-tight text-neutral-950 dark:text-neutral-50">
+                Featured Releases
               </h2>
             </div>
             <Link
               href="/products"
-              className="text-xs text-neutral-950 dark:text-neutral-50 hover:underline tracking-[-0.01em]"
-              data-umami-event="Landing: All Products Link"
+              className="text-base text-neutral-900 dark:text-neutral-100 hover:opacity-70 transition-opacity"
+              data-umami-event="Landing: View All Link"
             >
-              All Releases [6] &rarr;
+              View all products &rarr;
             </Link>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-neutral-200 dark:divide-neutral-800 border border-neutral-200 dark:border-neutral-800">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
             {featured.map((product) => (
               <div
                 key={product.id}
-                className="p-8 flex flex-col justify-between space-y-8 bg-transparent"
+                className="flex flex-col justify-between space-y-6 bg-white dark:bg-neutral-900 p-8 rounded-xl"
               >
-                <div className="space-y-3">
-                  <div className="flex items-center justify-between text-xs text-neutral-600 dark:text-neutral-400 font-normal">
+                <div className="space-y-4">
+                  <div className="flex items-center justify-between text-sm text-neutral-500">
                     <span>{product.category}</span>
-                    <span>${product.price}</span>
+                    <span className="text-neutral-950 dark:text-neutral-50 font-normal text-base">
+                      ${product.price}
+                    </span>
                   </div>
-                  <h3 className="text-lg font-normal tracking-[-0.02em] text-neutral-950 dark:text-neutral-50">
+
+                  <h3 className="text-2xl font-normal tracking-tight text-neutral-950 dark:text-neutral-50">
                     {product.name}
                   </h3>
-                  <p className="text-xs text-neutral-700 dark:text-neutral-300 leading-relaxed font-normal">
+
+                  <p className="text-base text-neutral-700 dark:text-neutral-300 leading-relaxed font-normal">
                     {product.description}
                   </p>
                 </div>
 
                 <div className="pt-4 flex items-center justify-between">
-                  <span className="text-[11px] text-neutral-500 font-mono">
+                  <span className="text-sm text-neutral-500 font-mono">
                     REF / {product.id}
                   </span>
                   <Button
@@ -123,9 +125,8 @@ export default function LandingPage() {
                     data-umami-event="Landing: Quick Add"
                     data-umami-event-product={product.name}
                     data-umami-event-price={product.price}
-                    className="text-[11px] uppercase tracking-[0.05em]"
                   >
-                    + Add to Cart
+                    Add to Cart
                   </Button>
                 </div>
               </div>
@@ -134,80 +135,74 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* Design Principles */}
-      <section className="border-b border-neutral-250 dark:border-neutral-800">
-        <div className="max-w-6xl mx-auto px-6 py-20">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-12 sm:gap-16">
-            <div className="space-y-3">
-              <span className="text-[11px] font-mono text-neutral-600 dark:text-neutral-400">
-                01 / PHILOSOPHY
-              </span>
-              <h3 className="text-base font-normal tracking-[-0.02em] text-neutral-950 dark:text-neutral-50">
-                Monochrome Restraint
+      {/* Editorial Pillars */}
+      <section className="py-28">
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-16">
+            <div className="space-y-4">
+              <span className="text-sm font-mono text-neutral-500">01 / HONESTY</span>
+              <h3 className="text-2xl font-normal tracking-tight text-neutral-950 dark:text-neutral-50">
+                Material Integrity
               </h3>
-              <p className="text-xs text-neutral-700 dark:text-neutral-300 leading-relaxed">
-                Color is eliminated in favor of surface texture, material density, and the natural interplay of ambient light.
+              <p className="text-base text-neutral-700 dark:text-neutral-300 leading-relaxed">
+                Raw aluminum, organic cotton canvas, and tactile ceramics. We avoid synthetic coatings and unnecessary decoration.
               </p>
             </div>
 
-            <div className="space-y-3">
-              <span className="text-[11px] font-mono text-neutral-600 dark:text-neutral-400">
-                02 / PROCESS
-              </span>
-              <h3 className="text-base font-normal tracking-[-0.02em] text-neutral-950 dark:text-neutral-50">
-                Tolerances &amp; Craft
+            <div className="space-y-4">
+              <span className="text-sm font-mono text-neutral-500">02 / ENDURANCE</span>
+              <h3 className="text-2xl font-normal tracking-tight text-neutral-950 dark:text-neutral-50">
+                Built to Last Decades
               </h3>
-              <p className="text-xs text-neutral-700 dark:text-neutral-300 leading-relaxed">
-                Machined metal, dense woolens, and raw ceramics. Every joint and seam is engineered for decades of mechanical resilience.
+              <p className="text-base text-neutral-700 dark:text-neutral-300 leading-relaxed">
+                Every connection point and stitch is reinforced. Designed to age with grace and develop a distinct patina.
               </p>
             </div>
 
-            <div className="space-y-3">
-              <span className="text-[11px] font-mono text-neutral-600 dark:text-neutral-400">
-                03 / STEWARDSHIP
-              </span>
-              <h3 className="text-base font-normal tracking-[-0.02em] text-neutral-950 dark:text-neutral-50">
-                No Artificial Obsolescence
+            <div className="space-y-4">
+              <span className="text-sm font-mono text-neutral-500">03 / PRECISION</span>
+              <h3 className="text-2xl font-normal tracking-tight text-neutral-950 dark:text-neutral-50">
+                Considered Form
               </h3>
-              <p className="text-xs text-neutral-700 dark:text-neutral-300 leading-relaxed">
-                We reject seasonal churn. What we introduce remains permanent, repairable, and consistent in standard.
+              <p className="text-base text-neutral-700 dark:text-neutral-300 leading-relaxed">
+                Nothing redundant is added. Every proportion is governed by ergonomics, physical balance, and intuitive handling.
               </p>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Dispatch Signup */}
-      <section>
-        <div className="max-w-6xl mx-auto px-6 py-20">
-          <div className="max-w-xl space-y-4">
-            <span className="text-[11px] tracking-[0.12em] uppercase text-neutral-600 dark:text-neutral-400 block">
+      {/* Dispatch Subscription */}
+      <section className="py-24 bg-neutral-50 dark:bg-neutral-950">
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="max-w-xl space-y-6">
+            <span className="text-sm font-normal tracking-wide text-neutral-500 uppercase block">
               Private Dispatch
             </span>
-            <h2 className="text-2xl font-normal tracking-[-0.02em] text-neutral-950 dark:text-neutral-50">
-              Receive notifications for archival releases and batch runs.
+            <h2 className="text-3xl font-normal tracking-tight text-neutral-950 dark:text-neutral-50">
+              Receive updates on small releases and private archive sales.
             </h2>
 
             {subscribed ? (
-              <div className="p-4 border border-neutral-300 dark:border-neutral-700 text-xs text-neutral-900 dark:text-neutral-100">
-                Thank you. Your address has been recorded in the dispatch registry.
+              <div className="p-5 rounded-lg bg-white dark:bg-neutral-900 text-base text-neutral-900 dark:text-neutral-100">
+                Thank you. Your email has been added to our dispatch register.
               </div>
             ) : (
-              <form onSubmit={handleSubscribe} className="flex gap-2 pt-2">
+              <form onSubmit={handleSubscribe} className="flex gap-3 pt-2">
                 <input
                   type="email"
                   required
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  placeholder="Enter your email address"
-                  className="flex-1 px-4 py-2 text-xs font-normal bg-transparent border border-neutral-300 dark:border-neutral-700 text-neutral-900 dark:text-neutral-100 focus:outline-none focus:border-neutral-900 dark:focus:border-white transition-colors"
+                  placeholder="name@email.com"
+                  className="flex-1 px-5 py-3 text-base font-normal bg-white dark:bg-neutral-900 rounded-md text-neutral-950 dark:text-neutral-50 focus:outline-none focus:ring-1 focus:ring-neutral-950 dark:focus:ring-white transition-all"
                 />
                 <Button
                   type="submit"
+                  size="default"
                   data-umami-event="Landing: Subscribe Submit"
-                  className="px-5 text-xs uppercase tracking-[0.06em]"
                 >
-                  Join
+                  Subscribe
                 </Button>
               </form>
             )}
