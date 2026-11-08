@@ -17,7 +17,9 @@ export default function RootLayout({
 }) {
   const websiteId = process.env.NEXT_PUBLIC_UMAMI_WEBSITE_ID;
   const scriptUrl =
-    process.env.NEXT_PUBLIC_UMAMI_SCRIPT_URL || "https://cloud.umami.is/script.js";
+    process.env.NEXT_PUBLIC_UMAMI_SCRIPT_URL || "/cdn/v1.js";
+  const hostUrl =
+    process.env.NEXT_PUBLIC_UMAMI_HOST_URL || "/cdn";
   const domains =
     process.env.NEXT_PUBLIC_UMAMI_DOMAINS ||
     (process.env.NODE_ENV === "development" ? "localhost" : undefined);
@@ -30,6 +32,7 @@ export default function RootLayout({
             defer
             src={scriptUrl}
             data-website-id={websiteId}
+            data-host-url={hostUrl}
             {...(domains ? { "data-domains": domains } : {})}
             strategy="afterInteractive"
           />
