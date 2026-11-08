@@ -48,3 +48,4 @@ export function trackUmamiEvent(
 
   return true;
 }
+
