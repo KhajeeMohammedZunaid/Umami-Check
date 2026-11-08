@@ -57,3 +57,4 @@ export const PRODUCTS: Product[] = [
     details: "Internal laptop sleeve, copper rivets, unlined minimalist construction.",
   },
 ];
+
